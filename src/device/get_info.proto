@@ -32,8 +32,7 @@ enum wallet_state_t {
 }
 
 message coin_list_t {
-	required string name = 1 [(nanopb).max_size = 11];
-	required string abbr = 2 [(nanopb).max_size = 6];
+	required string name = 1 [(nanopb).max_size = 9];
 }
 
 message fingerprint_t {
@@ -46,7 +45,7 @@ message res_parameter_t {
 	required string fw_ver = 2 [(nanopb).max_size = 6];
 	required string ksm_ver = 3 [(nanopb).max_size = 6];
 	required wallet_state_t state = 4;
-	repeated coin_list_t coin = 5;
+	repeated coin_list_t coin = 5 [(nanopb).max_count = 20];
 	required fingerprint_t fingerprint = 6; 
 }
 
