@@ -37,7 +37,7 @@ _PATH_NANOPB = $(MOD_DIR)/../../tools/nanopb/nanopb-0.3.9-linux-x86
 _PROTO_PATH=$(MOD_DIR)/src
 _NANOPB_BIN_PATH=$(_PATH_NANOPB)/generator
 _proto:
-	protoc -o./bin/protocol.pb --proto_path=$(_PROTO_PATH) $(_PROTO_PATH)/*.proto
+	protoc -o./bin/protocol.pb --proto_path=$(_PROTO_PATH) --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/*.proto
 	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/protocol.pb
 
 _export_nanopb:

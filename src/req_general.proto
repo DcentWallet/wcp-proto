@@ -6,7 +6,8 @@
 
 syntax = "proto2";
 
-package iotrust.bwallet;
+package bwallet;
+import "nanopb.proto";
 
 /* ############################################################ */
 /* //////////////////////////////////////////////////////////// */
@@ -41,7 +42,7 @@ message header_t {
 
 message body_t {
 	required command_t command = 1;
-	optional bytes parameter = 2;
+	optional bytes parameter = 2 [(nanopb).max_size = 40];
 }
 
 message request {
