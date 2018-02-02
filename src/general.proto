@@ -35,19 +35,47 @@ message command_t {
 /* //////////////////////////////////////////////////////////// */
 /* ############################################################ */
 
-message header_t {
+message req_header_t {
 	required uint32 version = 1;
 	required cointype_t request_to = 2;
 }
 
-message body_t {
+message req_body_t {
 	required command_t command = 1;
 	optional bytes parameter = 2 [(nanopb).max_size = 40];
 }
 
 message request {
-	required header_t header = 1;
-	required body_t body = 2;
+	required req_header_t header = 1;
+	required req_body_t body = 2;
+}
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+message error_t {
+	required uint32 code = 1;
+	required string message = 2 [(nanopb).max_size = 21];
+}
+
+message res_header_t {
+	required uint32 version = 1;
+	required cointype_t request_to = 2;
+	required bool is_success = 3;
+}
+
+message res_body_t {
+	required command_t command = 1;
+	optional bytes parameter = 2 [(nanopb).max_size = 40];
+	required error_t error = 3;
+}
+
+message response {
+	required res_header_t header = 1;
+	required res_body_t body = 2;
 }
 
 /* ############################################################ */
