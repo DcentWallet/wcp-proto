@@ -6,7 +6,7 @@
 
 syntax = "proto2";
 
-package wapplet.device;
+package device;
 import "nanopb.proto";
 
 /* ############################################################ */
@@ -15,7 +15,26 @@ import "nanopb.proto";
 /* //////////////////////////////////////////////////////////// */
 /* ############################################################ */
 
-// NO REQUEST PARAMETER
+message get_coin_info_req_parameter_t {
+	required uint32 coin_start_idx = 1;
+	required uint32 coin_list_num = 2;
+}
+
+message get_coin_info_res_parameter_t {
+	repeated coin_list_t coin = 5 [(nanopb).max_count = 10];
+}
+
+// #
+//
+
+message get_info_res_parameter_t {
+	required string devid = 1 [(nanopb).max_size = 33];
+	required string fw_ver = 2 [(nanopb).max_size = 6];
+	required string ksm_ver = 3 [(nanopb).max_size = 6];
+	required wallet_state_t state = 4;
+	required uint32 coin_num = 5;
+	required fingerprint_t fingerprint = 6; 
+}
 
 /* ############################################################ */
 /* //////////////////////////////////////////////////////////// */
@@ -29,10 +48,7 @@ enum wallet_state_t {
 	secure = 2;
 	locked_fp = 3;
 	locked_pin = 4;
-}
-
-message coin_list_t {
-	required string name = 1 [(nanopb).max_size = 9];
+	invalid = 0xff;
 }
 
 message fingerprint_t {
@@ -40,13 +56,8 @@ message fingerprint_t {
 	required uint32 enrolled = 2;
 }
 
-message res_parameter_t {
-	required string devid = 1 [(nanopb).max_size = 33];
-	required string fw_ver = 2 [(nanopb).max_size = 6];
-	required string ksm_ver = 3 [(nanopb).max_size = 6];
-	required wallet_state_t state = 4;
-	repeated coin_list_t coin = 5 [(nanopb).max_count = 20];
-	required fingerprint_t fingerprint = 6; 
+message coin_list_t {
+	required string name = 1 [(nanopb).max_size = 9];
 }
 
 /* ############################################################ */
