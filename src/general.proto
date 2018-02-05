@@ -70,7 +70,7 @@ message res_header_t {
 message res_body_t {
 	required command_t command = 1;
 	optional bytes parameter = 2 [(nanopb).max_size = 40];
-	required error_t error = 3;
+	optional error_t error = 3;
 }
 
 message response {
