@@ -28,9 +28,9 @@ message get_coin_info_res_parameter_t {
 //
 
 message get_info_res_parameter_t {
-	required string devid = 1 [(nanopb).max_size = 33];
-	required string fw_ver = 2 [(nanopb).max_size = 6];
-	required string ksm_ver = 3 [(nanopb).max_size = 6];
+	required string devid = 1 [(nanopb).max_size = 32];
+	required string fw_ver = 2 [(nanopb).max_size = 14];
+	required string ksm_ver = 3 [(nanopb).max_size = 14];
 	required wallet_state_t state = 4;
 	required uint32 coin_num = 5;
 	required fingerprint_t fingerprint = 6; 
