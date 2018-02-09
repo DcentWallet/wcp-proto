@@ -71,7 +71,7 @@ message error_t {
 
 message res_header_t {
 	required uint32 version = 1;
-	required cointype_t request_to = 2;
+	required cointype_t response_from = 2;
 	required bool is_success = 3;
 }
 
