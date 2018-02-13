@@ -34,6 +34,7 @@ message get_info_res_parameter_t {
 	required wallet_state_t state = 4;
 	required uint32 coin_num = 5;
 	required fingerprint_t fingerprint = 6; 
+	required string label = 7 [(nanopb).max_size = 11];
 }
 
 /* ############################################################ */
