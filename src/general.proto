@@ -26,6 +26,7 @@ message command_t {
 	enum device_t {
 		get_info = 0xA0;
 		get_coin_info = 0xA1;
+		set_label = 0xA2;
 	}
 	required uint32 value = 1;
 }
