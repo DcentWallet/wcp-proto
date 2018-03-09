@@ -28,6 +28,15 @@ message command_t {
 		get_coin_info = 0xA1;
 		set_label = 0xA2;
 	}
+	enum bitcoin_t {
+		transaction_begin = 0xA0;
+		transaction_update_input = 0xA1;
+		transaction_update_prevtx = 0xA2;
+		transaction_update_output = 0xA3;
+		transaction_update_end = 0xA4;
+		transaction_retrieve = 0xA5;
+		transaction_finish = 0xA6;
+	}
 	required uint32 value = 1;
 }
 

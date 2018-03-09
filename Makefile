@@ -24,9 +24,11 @@ all: clean build
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-build: _common _proto_device _export _export_nanopb
+build: _common _proto_device _proto_bitcoin _export _export_nanopb
 
 device: clean _proto_device _common _export
+
+bitcoin: clean _proto_bitcoin _common _export
 
 ## ############################################################ ##
 ## //////////////////////////////////////////////////////////// ##
@@ -45,6 +47,10 @@ _common:
 _proto_device:
 	protoc -o./bin/proto_device.pb --proto_path=$(_PROTO_PATH)/device --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/device/*.proto
 	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_device.pb
+
+_proto_bitcoin:
+	protoc -o./bin/proto_bitcoin.pb --proto_path=$(_PROTO_PATH)/bitcoin --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/bitcoin/*.proto
+	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_bitcoin.pb
 
 _export_nanopb:
 	cp $(_PATH_NANOPB)/pb_common.c ./export/include/pb_common.code
@@ -69,6 +75,36 @@ clean:
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
+noconsole: _clean_nocons _nocons_common _nocons_device _nocons_bitcoin
+
+_clean_nocons: 
+	\rm -f $(MOD_DIR)/export-no-console-env/include/*.h
+	\rm -f $(MOD_DIR)/export-no-console-env/include/*.code
+	\rm -f $(MOD_DIR)/export-no-console-env/include/device/*
+	\rm -f $(MOD_DIR)/export-no-console-env/include/bitcoin/*
+	\rm -f $(MOD_DIR)/bin/*
+
+_nocons_common: _common
+	cp ./bin/*.h ./export-no-console-env/include/
+	cp ./bin/*.code ./export-no-console-env/include/
+	cp $(_PATH_NANOPB)/pb.h ./export-no-console-env/include/
+	\rm -f $(MOD_DIR)/bin/*
+
+_nocons_device: _proto_device
+	cp ./bin/*.h ./export-no-console-env/include/device/
+	cp ./bin/*.code ./export-no-console-env/include/device/
+	\rm -f $(MOD_DIR)/bin/*
+
+_nocons_bitcoin: _proto_bitcoin
+	cp ./bin/*.h ./export-no-console-env/include/bitcoin/
+	cp ./bin/*.code ./export-no-console-env/include/bitcoin/
+	\rm -f $(MOD_DIR)/bin/*
+
+## ############################################################ ##
+## //////////////////////////////////////////////////////////// ##
+## ##
+## //////////////////////////////////////////////////////////// ##
+## ############################################################ ##
 # General rule
 
 .SUFFIXES : .o .c .asm

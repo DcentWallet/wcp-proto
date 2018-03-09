@@ -1,0 +1,88 @@
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+syntax = "proto2";
+
+package bitcoin;
+import "nanopb.proto";
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+message transaction_begin_req_parameter_t {
+	required transaction_type_t tx_type = 1;
+	required uint32 input_num = 2;
+	required uint32 output_num = 3;
+}
+
+// #
+//
+
+message transaction_update_input_req_parameter_t {
+	required uint32 input_idx = 1;
+	required uint32 prev_tx_size = 2;
+	required uint32 prev_tx_blk_num = 3;
+	required uint32 utxo_idx = 4;
+	required string key_path = 5 [(nanopb).max_size = 33];
+}
+
+// #
+//
+
+message transaction_update_prevtx_req_parameter_t {
+	required uint32 input_idx = 1;
+	required uint32 prev_tx_blk_idx = 2;
+	required string prev_tx_blk = 3 [(nanopb).max_size = 128];
+}
+
+// #
+//
+
+message transaction_update_output_req_parameter_t {
+	required uint32 ouput_idx = 1;
+	optional string to_address = 2 [(nanopb).max_size = 128];
+	optional string change_path = 3 [(nanopb).max_size = 33];
+}
+
+// #
+//
+
+message transaction_update_end_res_parameter_t {
+	required uint32 tx_size = 1;
+	required uint32 tx_blk_num = 2;
+}
+
+// #
+//
+
+message transaction_retrieve_res_parameter_t {
+	required uint32 tx_blk_idx = 2;
+	required string tx_blk = 3 [(nanopb).max_size = 128];
+}
+
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+enum transaction_type_t {
+	p2pkh = 0;
+	p2pk = 1;
+	p2sh = 2;
+	multisig = 3;
+}
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
