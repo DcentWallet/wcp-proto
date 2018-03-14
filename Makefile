@@ -60,10 +60,13 @@ _export_nanopb:
 	cp $(_PATH_NANOPB)/pb_encode.h ./export/include/
 	cp $(_PATH_NANOPB)/pb_decode.h ./export/include/
 
-_export: 
+_export_pb_h:
+	echo "#define PB_FIELD_16BIT 1\n" > ./export/include/pb.h
+	cat $(_PATH_NANOPB)/pb.h >> ./export/include/pb.h
+
+_export: _export_pb_h
 	cp ./bin/*.h ./export/include/
 	cp ./bin/*.code ./export/include/
-	cp $(_PATH_NANOPB)/pb.h ./export/include/
 
 clean:
 	\rm -f $(MOD_DIR)/export/include/*
@@ -87,7 +90,8 @@ _clean_nocons:
 _nocons_common: _common
 	cp ./bin/*.h ./export-no-console-env/include/
 	cp ./bin/*.code ./export-no-console-env/include/
-	cp $(_PATH_NANOPB)/pb.h ./export-no-console-env/include/
+	echo "#define PB_FIELD_16BIT 1\n" > ./export-no-console-env/include/pb.h
+	cat $(_PATH_NANOPB)/pb.h >> ./export-no-console-env/include/pb.h
 	\rm -f $(MOD_DIR)/bin/*
 
 _nocons_device: _proto_device
