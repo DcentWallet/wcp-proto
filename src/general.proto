@@ -68,6 +68,9 @@ enum error_code_t {
 	none = 0x0000;
 	invalid_access = 0x0001;
 	internal_process = 0x0002;
+	memory_access = 0x0003;
+	invalid_format = 0x0004;
+	not_support = 0x0005;
 	device_busy = 0xFFFE;
 	unknown = 0xFFFF;
 }
