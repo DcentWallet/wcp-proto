@@ -20,7 +20,7 @@ message transaction_begin_req_parameter_t {
 	required transaction_type_t tx_type = 2;
 	required uint32 tx_blk_size = 3;
 	required uint32 input_num = 4;
-	repeated transaction_input_t input = 5 [(nanopb).max_count = 100];
+	repeated transaction_input_t input = 5 [(nanopb).max_count = 60];
 	required uint32 output_num = 6;
 	repeated transaction_output_t output = 7 [(nanopb).max_count = 10];
 }
