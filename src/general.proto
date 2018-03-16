@@ -25,7 +25,6 @@ enum cointype_t {
 message command_t {
 	enum device_t {
 		get_info = 0xA0;
-		get_coin_info = 0xA1;
 		set_label = 0xA2;
 	}
 	enum bitcoin_t {
@@ -50,7 +49,7 @@ message req_header_t {
 
 message req_body_t {
 	required command_t command = 1;
-	optional bytes parameter = 2 [(nanopb).max_size = 4080];
+	optional bytes parameter = 2 [(nanopb).max_size = 8080];
 }
 
 message request {
@@ -71,6 +70,7 @@ enum error_code_t {
 	memory_access = 0x0003;
 	invalid_format = 0x0004;
 	not_support = 0x0005;
+	user_cancel = 0xFFFD;
 	device_busy = 0xFFFE;
 	unknown = 0xFFFF;
 }
@@ -89,7 +89,7 @@ message res_header_t {
 
 message res_body_t {
 	required command_t command = 1;
-	optional bytes parameter = 2 [(nanopb).max_size = 4040];
+	optional bytes parameter = 2 [(nanopb).max_size = 8080];
 	optional error_t error = 3;
 }
 

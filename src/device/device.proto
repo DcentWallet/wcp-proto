@@ -20,21 +20,9 @@ message get_info_res_parameter_t {
 	required string fw_ver = 2 [(nanopb).max_size = 14];
 	required string ksm_ver = 3 [(nanopb).max_size = 14];
 	required wallet_state_t state = 4;
-	required uint32 coin_num = 5;
+	repeated coin_list_t coin = 5 [(nanopb).max_count = 20];
 	required fingerprint_t fingerprint = 6; 
 	required string label = 7 [(nanopb).max_size = 11];
-}
-
-// #
-//
-
-message get_coin_info_req_parameter_t {
-	required uint32 coin_start_idx = 1;
-	required uint32 coin_list_num = 2;
-}
-
-message get_coin_info_res_parameter_t {
-	repeated coin_list_t coin = 5 [(nanopb).max_count = 10];
 }
 
 // #
@@ -65,7 +53,8 @@ message fingerprint_t {
 }
 
 message coin_list_t {
-	required string name = 1 [(nanopb).max_size = 9];
+	required string name = 1 [(nanopb).max_size = 16];
+	required string symbol = 2 [(nanopb).max_size = 10];
 }
 
 /* ############################################################ */
