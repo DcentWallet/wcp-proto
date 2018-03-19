@@ -18,6 +18,7 @@ import "nanopb.proto";
 enum cointype_t {
 	device = 0x0000;
 	bitcoin = 0x1000;
+	bitcoin_testnet = 0x1001;
 	ethereum = 0x2000;
 	kyber = 0x3000;
 }
@@ -29,9 +30,10 @@ message command_t {
 	}
 	enum bitcoin_t {
 		transaction_begin = 0xA0;
-		transaction_update_prevtx = 0xA1;
-		transaction_finish = 0xA2;
-		transaction_retrieve = 0xA3;
+		transaction_update_script = 0xA1;
+		transaction_update_prevtx = 0xA2;
+		transaction_finish = 0xA3;
+		transaction_retrieve = 0xA4;
 	}
 	required uint32 value = 1;
 }
@@ -70,6 +72,7 @@ enum error_code_t {
 	memory_access = 0x0003;
 	invalid_format = 0x0004;
 	not_support = 0x0005;
+	lowlevel_protocol = 0xFFFC;
 	user_cancel = 0xFFFD;
 	device_busy = 0xFFFE;
 	unknown = 0xFFFF;

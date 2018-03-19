@@ -19,7 +19,15 @@ message transaction_begin_req_parameter_t {
 	required uint32 version = 1;
 	required uint32 tx_blk_size = 2;
 	repeated transaction_input_t input = 5 [(nanopb).max_count = 50];
-	repeated transaction_output_t output = 7 [(nanopb).max_count = 20];
+	repeated transaction_output_t output = 7 [(nanopb).max_count = 10];
+}
+
+// #
+//
+
+message transaction_update_script_req_parameter_t {
+	required uint32 input_idx = 1;
+	required bytes script = 2 [(nanopb).max_size = 8000];
 }
 
 // #
@@ -71,7 +79,7 @@ message transaction_input_t {
 message transaction_output_t {
 	required transaction_type_t type = 1;
 	required uint64 value = 2;
-	required string to_address = 3 [(nanopb).max_size = 200];
+	repeated string to_address = 3 [(nanopb).max_size = 120, (nanopb).max_count = 3];
 }
 
 /* ############################################################ */
