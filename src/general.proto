@@ -72,6 +72,7 @@ enum error_code_t {
 	memory_access = 0x0003;
 	invalid_format = 0x0004;
 	not_support = 0x0005;
+	invalid_command = 0x0006;
 	lowlevel_protocol = 0xFFFC;
 	user_cancel = 0xFFFD;
 	device_busy = 0xFFFE;
