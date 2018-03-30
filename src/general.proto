@@ -73,6 +73,7 @@ enum error_code_t {
 	invalid_format = 0x0004;
 	not_support = 0x0005;
 	invalid_command = 0x0006;
+	wrong_length = 0x0007;
 	lowlevel_protocol = 0xFFFC;
 	user_cancel = 0xFFFD;
 	device_busy = 0xFFFE;
@@ -88,13 +89,13 @@ message res_header_t {
 	required uint32 version = 1;
 	required cointype_t response_from = 2;
 	required bool is_error = 3;
-	required bool has_more = 4;
 }
 
 message res_body_t {
 	required command_t command = 1;
 	optional bytes parameter = 2 [(nanopb).max_size = 8080];
 	optional error_t error = 3;
+	required bool has_more = 4;
 }
 
 message response {
