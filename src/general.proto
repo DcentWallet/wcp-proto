@@ -20,7 +20,6 @@ enum cointype_t {
 	bitcoin = 0x1000;
 	bitcoin_testnet = 0x1001;
 	ethereum = 0x2000;
-	kyber = 0x3000;
 }
 
 message command_t {
