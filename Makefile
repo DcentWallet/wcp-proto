@@ -24,9 +24,9 @@ all: clean build
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-build: _common _proto_device _proto_bitcoin _export _export_nanopb
+build: _common _proto_device _proto_coin _proto_bitcoin _export _export_nanopb
 
-device: clean _proto_device _common _export
+device: clean _proto_device _proto_coin _common _export
 
 bitcoin: clean _proto_bitcoin _common _export
 
@@ -47,6 +47,10 @@ _common:
 _proto_device:
 	protoc -o./bin/proto_device.pb --proto_path=$(_PROTO_PATH)/device --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/device/*.proto
 	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_device.pb
+
+_proto_coin:
+	protoc -o./bin/proto_coin.pb --proto_path=$(_PROTO_PATH)/coin --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/coin/*.proto
+	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_coin.pb
 
 _proto_bitcoin:
 	protoc -o./bin/proto_bitcoin.pb --proto_path=$(_PROTO_PATH)/bitcoin --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/bitcoin/*.proto
@@ -94,7 +98,7 @@ _nocons_common: _common
 	cat $(_PATH_NANOPB)/pb.h >> ./export-no-console-env/include/pb.h
 	\rm -f $(MOD_DIR)/bin/*
 
-_nocons_device: _proto_device
+_nocons_device: _proto_device _proto_coin
 	cp ./bin/*.h ./export-no-console-env/include/device/
 	cp ./bin/*.code ./export-no-console-env/include/device/
 	\rm -f $(MOD_DIR)/bin/*

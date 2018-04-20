@@ -1,0 +1,57 @@
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+syntax = "proto2";
+
+package coin;
+import "nanopb.proto";
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+// #
+//
+
+message sync_account_info_req_parameter_t {
+	required string date = 1 [(nanopb).max_size = 17];
+	required string coin_group = 2 [(nanopb).max_size = 15];
+	required string coin_name = 3 [(nanopb).max_size = 15];
+	required string label = 4 [(nanopb).max_size = 15];
+	required string balance = 5 [(nanopb).max_size = 18];
+	required string address_path = 6 [(nanopb).max_size = 25];
+}
+
+// #
+//
+
+message get_account_info_res_parameter_t {
+	required string coin_name = 3 [(nanopb).max_size = 15];
+	required string label = 4 [(nanopb).max_size = 15];
+	required string balance = 5 [(nanopb).max_size = 18];
+	required string address_path = 6 [(nanopb).max_size = 25];
+}
+
+// #
+//
+
+message extract_pubkey_req_parameter_t {
+	optional string bip32name = 1 [(nanopb).max_size = 17];
+	required string key_path = 2 [(nanopb).max_size = 51];
+}
+
+message extract_pubkey_res_parameter_t {
+	required string label = 1 [(nanopb).max_size = 121];
+}
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
