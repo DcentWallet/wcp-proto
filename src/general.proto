@@ -39,6 +39,7 @@ message command_t {
 		transaction_update_prevtx = 0xA2;
 		transaction_finish = 0xA3;
 		transaction_retrieve = 0xA4;
+		get_address = 0xB0;
 	}
 	required uint32 value = 1;
 }

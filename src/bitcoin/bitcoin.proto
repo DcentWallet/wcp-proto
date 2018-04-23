@@ -56,6 +56,17 @@ message transaction_retrieve_res_parameter_t {
 	required bytes tx_blk = 2 [(nanopb).max_size = 8000];
 }
 
+// #
+//
+
+message get_address_req_parameter_t {
+	required string key_path = 2 [(nanopb).max_size = 51];
+}
+
+message get_address_res_parameter_t {
+	required string address = 1 [(nanopb).max_size = 40];
+}
+
 /* ############################################################ */
 /* //////////////////////////////////////////////////////////// */
 /* */
