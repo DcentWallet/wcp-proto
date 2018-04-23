@@ -44,7 +44,7 @@ message get_account_info_res_parameter_t {
 //
 
 message extract_pubkey_req_parameter_t {
-	optional string bip32name = 1 [(nanopb).max_size = 17];
+	required string bip32name = 1 [(nanopb).max_size = 17];
 	required string key_path = 2 [(nanopb).max_size = 51];
 }
 
