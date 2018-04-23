@@ -79,6 +79,7 @@ enum error_code_t {
 	not_support = 0x0005;
 	invalid_command = 0x0006;
 	wrong_length = 0x0007;
+	wrong_number = 0x0008;
 	lowlevel_protocol = 0xFFFC;
 	user_cancel = 0xFFFD;
 	device_busy = 0xFFFE;

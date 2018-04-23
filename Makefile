@@ -82,7 +82,7 @@ clean:
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-noconsole: _clean_nocons _nocons_common _nocons_device _nocons_bitcoin
+noconsole: _clean_nocons _nocons_common _nocons_device _nocons_coin _nocons_bitcoin
 
 _clean_nocons: 
 	\rm -f $(MOD_DIR)/export-no-console-env/include/*.h
@@ -98,9 +98,14 @@ _nocons_common: _common
 	cat $(_PATH_NANOPB)/pb.h >> ./export-no-console-env/include/pb.h
 	\rm -f $(MOD_DIR)/bin/*
 
-_nocons_device: _proto_device _proto_coin
+_nocons_device: _proto_device 
 	cp ./bin/*.h ./export-no-console-env/include/device/
 	cp ./bin/*.code ./export-no-console-env/include/device/
+	\rm -f $(MOD_DIR)/bin/*
+
+_nocons_coin: _proto_coin
+	cp ./bin/*.h ./export-no-console-env/include/coin/
+	cp ./bin/*.code ./export-no-console-env/include/coin/
 	\rm -f $(MOD_DIR)/bin/*
 
 _nocons_bitcoin: _proto_bitcoin
