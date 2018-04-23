@@ -22,8 +22,8 @@ message sync_account_info_req_parameter_t {
 	required uint32 total_num = 1;
 	required uint32 account_idx = 2;
 	required string date = 3 [(nanopb).max_size = 17];
-	required coin_group_t coin_group = 4;
-	required string coin_name = 5 [(nanopb).max_size = 15];
+	required string coin_group = 4 [(nanopb).max_size = 17];
+	required string coin_name = 5 [(nanopb).max_size = 17];
 	required string label = 6 [(nanopb).max_size = 15];
 	required string balance = 7 [(nanopb).max_size = 18];
 	required string address_path = 8 [(nanopb).max_size = 25];
@@ -48,22 +48,6 @@ message extract_pubkey_req_parameter_t {
 
 message extract_pubkey_res_parameter_t {
 	required string pubkey = 1 [(nanopb).max_size = 121];
-}
-
-/* ############################################################ */
-/* //////////////////////////////////////////////////////////// */
-/* */
-/* //////////////////////////////////////////////////////////// */
-/* ############################################################ */
-
-enum coin_group_t{
-	none = 0;
-	bitcoin = 1;
-	btc_testnet = 2;
-	ethereum = 3;
-	ether_classic = 4;
-	erc20 = 5;
-	ripple = 6;
 }
 
 /* ############################################################ */
