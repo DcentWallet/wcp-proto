@@ -33,7 +33,9 @@ message sync_account_info_req_parameter_t {
 //
 
 message get_account_info_res_parameter_t {
-	required string coin_name = 3 [(nanopb).max_size = 15];
+	required uint32 total_num = 1;
+	required uint32 account_idx = 2;
+	required string coin_name = 3 [(nanopb).max_size = 17];
 	required string label = 4 [(nanopb).max_size = 15];
 	required string address_path = 6 [(nanopb).max_size = 25];
 }
