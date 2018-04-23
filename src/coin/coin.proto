@@ -49,7 +49,7 @@ message extract_pubkey_req_parameter_t {
 }
 
 message extract_pubkey_res_parameter_t {
-	required string pubkey = 1 [(nanopb).max_size = 121];
+	required bytes pubkey = 1 [(nanopb).max_size = 121];
 }
 
 /* ############################################################ */
