@@ -9,6 +9,9 @@ syntax = "proto2";
 package bwallet;
 import "nanopb.proto";
 
+option java_package = "com.iotrust.dcent.wam.proto";
+option java_outer_classname = "General";
+
 /* ############################################################ */
 /* //////////////////////////////////////////////////////////// */
 /* */
