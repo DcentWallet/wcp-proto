@@ -1,0 +1,57 @@
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+syntax = "proto2";
+
+package coin;
+import "nanopb.proto";
+
+option java_package = "com.iotrust.dcent.wam.proto";
+option java_outer_classname = "Ethereum";
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
+// #
+//
+
+message transaction_req_parameter_t {
+	required bytes nonce = 1 [(nanopb).max_size = 32];
+	required bytes gas_price = 2 [(nanopb).max_size = 32];
+	required bytes gas_limit = 3 [(nanopb).max_size = 32];
+	required string to_address = 4 [(nanopb).max_size = 25];
+	required bytes value = 5 [(nanopb).max_size = 32];
+	required bytes data = 6 [(nanopb).max_size = 7900];
+}
+
+// #
+//
+
+message transaction_res_parameter_t {
+	required bytes signed_tx = 2 [(nanopb).max_size = 8000];
+}
+
+// #
+//
+
+message get_address_req_parameter_t {
+	required string key_path = 2 [(nanopb).max_size = 51];
+}
+
+message get_address_res_parameter_t {
+	required string address = 1 [(nanopb).max_size = 25];
+}
+
+
+/* ############################################################ */
+/* //////////////////////////////////////////////////////////// */
+/* */
+/* //////////////////////////////////////////////////////////// */
+/* ############################################################ */
+
