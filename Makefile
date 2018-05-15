@@ -95,6 +95,7 @@ _clean_nocons:
 	\rm -f $(MOD_DIR)/export-no-console-env/include/*.code
 	\rm -f $(MOD_DIR)/export-no-console-env/include/device/*
 	\rm -f $(MOD_DIR)/export-no-console-env/include/bitcoin/*
+	\rm -f $(MOD_DIR)/export-no-console-env/include/ethereum/*
 	\rm -f $(MOD_DIR)/bin/*
 
 _nocons_common: _common
@@ -119,7 +120,7 @@ _nocons_bitcoin: _proto_bitcoin
 	cp ./bin/*.code ./export-no-console-env/include/bitcoin/
 	\rm -f $(MOD_DIR)/bin/*
 
-_nocons_bitcoin: _proto_ethereum
+_nocons_ethereum: _proto_ethereum
 	cp ./bin/*.h ./export-no-console-env/include/ethereum/
 	cp ./bin/*.code ./export-no-console-env/include/ethereum/
 	\rm -f $(MOD_DIR)/bin/*

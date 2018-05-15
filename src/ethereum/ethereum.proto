@@ -6,7 +6,7 @@
 
 syntax = "proto2";
 
-package coin;
+package ethereum;
 import "nanopb.proto";
 
 option java_package = "com.iotrust.dcent.wam.proto";
@@ -25,9 +25,9 @@ message transaction_req_parameter_t {
 	required bytes nonce = 1 [(nanopb).max_size = 32];
 	required bytes gas_price = 2 [(nanopb).max_size = 32];
 	required bytes gas_limit = 3 [(nanopb).max_size = 32];
-	required string to_address = 4 [(nanopb).max_size = 25];
+	required string to_address = 4 [(nanopb).max_size = 43];
 	required bytes value = 5 [(nanopb).max_size = 32];
-	required bytes data = 6 [(nanopb).max_size = 7900];
+	required bytes data = 6 [(nanopb).max_size = 7800];
 }
 
 // #
@@ -45,7 +45,7 @@ message get_address_req_parameter_t {
 }
 
 message get_address_res_parameter_t {
-	required string address = 1 [(nanopb).max_size = 25];
+	required string address = 1 [(nanopb).max_size = 43];
 }
 
 
