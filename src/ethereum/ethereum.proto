@@ -30,7 +30,7 @@ message transaction_begin_req_parameter_t {
 	required bytes value = 6 [(nanopb).max_size = 32];
 	required uint32 total_data_len = 7;
 	required bytes init_data_blk = 8 [(nanopb).max_size = 7000];
-	optional uint32 chain_id = 9;
+	required uint32 chain_id = 9;
 	required string key_path = 10 [(nanopb).max_size = 51];
 }
 
