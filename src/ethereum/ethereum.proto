@@ -21,20 +21,34 @@ option java_outer_classname = "Ethereum";
 // #
 //
 
-message transaction_req_parameter_t {
+message transaction_begin_req_parameter_t {
 	required bytes nonce = 1 [(nanopb).max_size = 32];
 	required bytes gas_price = 2 [(nanopb).max_size = 32];
 	required bytes gas_limit = 3 [(nanopb).max_size = 32];
-	required string to_address = 4 [(nanopb).max_size = 43];
-	required bytes value = 5 [(nanopb).max_size = 32];
-	required bytes data = 6 [(nanopb).max_size = 7800];
+	optional string to_address_str = 4 [(nanopb).max_size = 43];
+	required bytes to_address = 5 [(nanopb).max_size = 20];
+	required bytes value = 6 [(nanopb).max_size = 32];
+	required uint32 total_data_len = 7;
+	required bytes init_data_blk = 8 [(nanopb).max_size = 7000];
+	optional uint32 chain_id = 9;
+	required string key_path = 10 [(nanopb).max_size = 51];
 }
 
 // #
 //
 
-message transaction_res_parameter_t {
-	required bytes signed_tx = 2 [(nanopb).max_size = 8000];
+message transaction_update_data_req_parameter_t {
+	required uint32 data_blk_idx = 2;
+	required bytes data_blk = 3 [(nanopb).max_size = 8000];
+}
+
+// #
+//
+
+message transaction_finish_res_parameter_t {
+	required bytes sign_v = 1 [(nanopb).max_size = 1];
+	required bytes sign_r = 2 [(nanopb).max_size = 32];
+	required bytes sign_s = 3 [(nanopb).max_size = 32];
 }
 
 // #
