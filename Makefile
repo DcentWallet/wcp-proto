@@ -24,13 +24,15 @@ all: clean build
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-build: _common _proto_device _proto_coin _proto_bitcoin _proto_ethereum _export _export_nanopb
+build: _common _proto_device _proto_coin _proto_bitcoin _proto_ethereum _proto_erc20 _export _export_nanopb
 
 device: clean _proto_device _proto_coin _common _export
 
 bitcoin: clean _proto_bitcoin _common _export
 
 ethereum: clean _proto_ethereum _common _export
+
+erc20: clean _proto_erc20 _common _export
 
 ## ############################################################ ##
 ## //////////////////////////////////////////////////////////// ##
@@ -62,6 +64,10 @@ _proto_ethereum:
 	protoc -o./bin/proto_ethereum.pb --proto_path=$(_PROTO_PATH)/ethereum --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/ethereum/*.proto
 	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_ethereum.pb
 
+_proto_erc20:
+	protoc -o./bin/proto_erc20.pb --proto_path=$(_PROTO_PATH)/erc20 --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/erc20/*.proto
+	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_erc20.pb
+
 _export_nanopb:
 	cp $(_PATH_NANOPB)/pb_common.c ./export/include/pb_common.code
 	cp $(_PATH_NANOPB)/pb_encode.c ./export/include/pb_encode.code
@@ -88,7 +94,7 @@ clean:
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-noconsole: _clean_nocons _nocons_common _nocons_device _nocons_coin _nocons_bitcoin _nocons_ethereum
+noconsole: _clean_nocons _nocons_common _nocons_device _nocons_coin _nocons_bitcoin _nocons_ethereum _nocons_erc20
 
 _clean_nocons: 
 	\rm -f $(MOD_DIR)/export-no-console-env/include/*.h
@@ -96,6 +102,7 @@ _clean_nocons:
 	\rm -f $(MOD_DIR)/export-no-console-env/include/device/*
 	\rm -f $(MOD_DIR)/export-no-console-env/include/bitcoin/*
 	\rm -f $(MOD_DIR)/export-no-console-env/include/ethereum/*
+	\rm -f $(MOD_DIR)/export-no-console-env/include/erc20/*
 	\rm -f $(MOD_DIR)/bin/*
 
 _nocons_common: _common
@@ -123,6 +130,11 @@ _nocons_bitcoin: _proto_bitcoin
 _nocons_ethereum: _proto_ethereum
 	cp ./bin/*.h ./export-no-console-env/include/ethereum/
 	cp ./bin/*.code ./export-no-console-env/include/ethereum/
+	\rm -f $(MOD_DIR)/bin/*
+
+_nocons_erc20: _proto_erc20
+	cp ./bin/*.h ./export-no-console-env/include/erc20/
+	cp ./bin/*.code ./export-no-console-env/include/erc20/
 	\rm -f $(MOD_DIR)/bin/*
 
 ## ############################################################ ##

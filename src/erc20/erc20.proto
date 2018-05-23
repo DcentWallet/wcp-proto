@@ -6,11 +6,11 @@
 
 syntax = "proto2";
 
-package ethereum;
+package erc20;
 import "nanopb.proto";
 
 option java_package = "com.iotrust.dcent.wam.proto";
-option java_outer_classname = "Ethereum";
+option java_outer_classname = "ERC20";
 
 /* ############################################################ */
 /* //////////////////////////////////////////////////////////// */
@@ -21,51 +21,36 @@ option java_outer_classname = "Ethereum";
 // #
 //
 
-message transaction_begin_req_parameter_t {
+message transaction_req_parameter_t {
 	required bytes nonce = 1 [(nanopb).max_size = 32];
 	required bytes gas_price = 2 [(nanopb).max_size = 32];
 	required bytes gas_limit = 3 [(nanopb).max_size = 32];
-	required string to_address_str = 4 [(nanopb).max_size = 43];
-	required bytes to_address = 5 [(nanopb).max_size = 20];
-	required bytes value = 6 [(nanopb).max_size = 32];
-	required uint32 total_data_len = 7;
-	required bytes init_data_blk = 8 [(nanopb).max_size = 7000];
-	required uint32 chain_id = 9;
+	required uint32 chain_id = 4;
+	required contract_info_t contract = 5;
 	required string key_path = 10 [(nanopb).max_size = 51];
 }
 
-// #
-//
-
-message transaction_update_data_req_parameter_t {
-	required uint32 data_blk_idx = 2;
-	required bytes data_blk = 3 [(nanopb).max_size = 8000];
+message transaction_res_parameter_t {
+	required bytes signed_tx = 1 [(nanopb).max_size = 8000];
+	required bytes sign_v = 2 [(nanopb).max_size = 1];
+	required bytes sign_r = 3 [(nanopb).max_size = 32];
+	required bytes sign_s = 4 [(nanopb).max_size = 32];
 }
-
-// #
-//
-
-message transaction_finish_res_parameter_t {
-	required bytes sign_v = 1 [(nanopb).max_size = 1];
-	required bytes sign_r = 2 [(nanopb).max_size = 32];
-	required bytes sign_s = 3 [(nanopb).max_size = 32];
-}
-
-// #
-//
-
-message get_address_req_parameter_t {
-	required string key_path = 2 [(nanopb).max_size = 51];
-}
-
-message get_address_res_parameter_t {
-	required string address = 1 [(nanopb).max_size = 43];
-}
-
 
 /* ############################################################ */
 /* //////////////////////////////////////////////////////////// */
 /* */
 /* //////////////////////////////////////////////////////////// */
 /* ############################################################ */
+
+message contract_info_t {
+	required string name = 1 [(nanopb).max_size = 33];
+	required string symbol = 2 [(nanopb).max_size = 33];
+	required bytes contract_address = 3 [(nanopb).max_size = 20];
+	required string contract_address_str = 4 [(nanopb).max_size = 43];
+	required bytes to_address = 5 [(nanopb).max_size = 20];
+	required string to_address_str = 6 [(nanopb).max_size = 43];
+	required uint32 decimals = 7;
+	required bytes value = 8 [(nanopb).max_size = 32];
+}
 

@@ -24,6 +24,7 @@ enum cointype_t {
 	bitcoin = 0x1000;
 	bitcoin_testnet = 0x1001;
 	ethereum = 0x2000;
+	erc20 = 0x2020;
 }
 
 message command_t {
@@ -49,6 +50,9 @@ message command_t {
 		eth_transaction_update_data = 0xA1;
 		eth_transaction_finish = 0xA3;
 		eth_get_address = 0xB0;
+	}
+	enum erc20_t {
+		erc20_transaction = 0xA0;
 	}
 	required uint32 value = 1;
 }
