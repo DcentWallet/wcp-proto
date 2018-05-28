@@ -23,6 +23,8 @@ enum cointype_t {
 	coin = 0x0001;
 	bitcoin = 0x1000;
 	bitcoin_testnet = 0x1001;
+	monacoin = 0x1100;
+	monacoin_testnet = 0x1101;
 	ethereum = 0x2000;
 	erc20 = 0x2020;
 }
