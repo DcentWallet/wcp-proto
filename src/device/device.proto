@@ -35,6 +35,13 @@ message set_label_req_parameter_t {
 	required string label = 1 [(nanopb).max_size = 11];
 }
 
+// #
+//
+
+message init_wallet_req_parameter_t {
+	repeated string mnemonic = 2 [(nanopb).max_size = 20, (nanopb).max_count = 24];
+}
+
 /* ############################################################ */
 /* //////////////////////////////////////////////////////////// */
 /* */
@@ -56,7 +63,7 @@ message fingerprint_t {
 }
 
 message coin_list_t {
-	required string name = 1 [(nanopb).max_size = 16];
+	required string name = 1 [(nanopb).max_size = 17];
 }
 
 /* ############################################################ */
