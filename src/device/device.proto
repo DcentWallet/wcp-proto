@@ -63,7 +63,7 @@ message fingerprint_t {
 }
 
 message coin_list_t {
-	required string name = 1 [(nanopb).max_size = 17];
+	required string name = 1 [(nanopb).max_size = 16];
 }
 
 /* ############################################################ */
