@@ -27,6 +27,7 @@ enum cointype_t {
 	monacoin_testnet = 0x1101;
 	ethereum = 0x2000;
 	erc20 = 0x2020;
+	ripple = 0x3000;
 }
 
 message command_t {
@@ -56,6 +57,12 @@ message command_t {
 	}
 	enum erc20_t {
 		erc20_transaction = 0xA0;
+	}
+	enum ripple_t {
+		xrp_transaction_begin = 0xA0;
+		xrp_transaction_update_data = 0xA1;
+		xrp_transaction_finish = 0xA3;
+		xrp_get_address = 0xB0;
 	}
 	required uint32 value = 1;
 }
