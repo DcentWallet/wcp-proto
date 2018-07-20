@@ -21,6 +21,18 @@ option java_outer_classname = "Ripple";
 // #
 //
 
+message transaction_req_parameter_t {
+	required bytes unsigned_tx = 1 [(nanopb).max_size = 7900];
+	required string key_path = 10 [(nanopb).max_size = 51];
+}
+
+message transaction_res_parameter_t {
+	required bytes signed_tx = 1 [(nanopb).max_size = 8000];
+}
+
+// #
+//
+
 message get_address_req_parameter_t {
 	required string key_path = 2 [(nanopb).max_size = 51];
 }

@@ -59,9 +59,7 @@ message command_t {
 		erc20_transaction = 0xA0;
 	}
 	enum ripple_t {
-		xrp_transaction_begin = 0xA0;
-		xrp_transaction_update_data = 0xA1;
-		xrp_transaction_finish = 0xA3;
+		xrp_transaction = 0xA0;
 		xrp_get_address = 0xB0;
 	}
 	required uint32 value = 1;
