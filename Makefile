@@ -24,7 +24,7 @@ all: clean build
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-build: _common _proto_device _proto_coin _proto_bitcoin _proto_ethereum _proto_erc20 _proto_ripple _export _export_nanopb
+build: _common _proto_device _proto_coin _proto_bitcoin _proto_ethereum _proto_erc20 _proto_ripple _proto_eos _export _export_nanopb
 
 device: clean _proto_device _proto_coin _common _export
 
@@ -35,6 +35,8 @@ ethereum: clean _proto_ethereum _common _export
 erc20: clean _proto_erc20 _common _export
 
 ripple: clean _proto_ripple _common _export
+
+eos: clean _proto_eos _common _export
 
 ## ############################################################ ##
 ## //////////////////////////////////////////////////////////// ##
@@ -74,6 +76,10 @@ _proto_ripple:
 	protoc -o./bin/proto_ripple.pb --proto_path=$(_PROTO_PATH)/ripple --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/ripple/*.proto
 	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_ripple.pb
 
+_proto_eos:
+	protoc -o./bin/proto_eos.pb --proto_path=$(_PROTO_PATH)/eos --proto_path=$(_PATH_NANOPB)/generator/proto $(_PROTO_PATH)/eos/*.proto
+	python $(_NANOPB_BIN_PATH)/nanopb_generator.py --source-extension=.code ./bin/proto_eos.pb
+
 _export_nanopb:
 	cp $(_PATH_NANOPB)/pb_common.c ./export/include/pb_common.code
 	cp $(_PATH_NANOPB)/pb_encode.c ./export/include/pb_encode.code
@@ -100,7 +106,7 @@ clean:
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-noconsole: _clean_nocons _nocons_common _nocons_device _nocons_coin _nocons_bitcoin _nocons_ethereum _nocons_erc20 _nocons_ripple
+noconsole: _clean_nocons _nocons_common _nocons_device _nocons_coin _nocons_bitcoin _nocons_ethereum _nocons_erc20 _nocons_ripple _nocons_eos
 
 _clean_nocons: 
 	\rm -f $(MOD_DIR)/export-no-console-env/include/*.h
@@ -110,6 +116,7 @@ _clean_nocons:
 	\rm -f $(MOD_DIR)/export-no-console-env/include/ethereum/*
 	\rm -f $(MOD_DIR)/export-no-console-env/include/erc20/*
 	\rm -f $(MOD_DIR)/export-no-console-env/include/ripple/*
+	\rm -f $(MOD_DIR)/export-no-console-env/include/eos/*
 	\rm -f $(MOD_DIR)/bin/*
 
 _nocons_common: _common
@@ -147,6 +154,11 @@ _nocons_erc20: _proto_erc20
 _nocons_ripple: _proto_ripple
 	cp ./bin/*.h ./export-no-console-env/include/ripple/
 	cp ./bin/*.code ./export-no-console-env/include/ripple/
+	\rm -f $(MOD_DIR)/bin/*
+
+_nocons_eos: _proto_eos
+	cp ./bin/*.h ./export-no-console-env/include/eos/
+	cp ./bin/*.code ./export-no-console-env/include/eos/
 	\rm -f $(MOD_DIR)/bin/*
 
 ## ############################################################ ##

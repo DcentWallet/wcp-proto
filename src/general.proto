@@ -28,6 +28,8 @@ enum cointype_t {
 	ethereum = 0x2000;
 	erc20 = 0x2020;
 	ripple = 0x3000;
+	eos = 0x4000;
+	invalid = 0xFFFF;
 }
 
 message command_t {
@@ -61,6 +63,10 @@ message command_t {
 	enum ripple_t {
 		xrp_transaction = 0xA0;
 		xrp_get_address = 0xB0;
+	}
+	enum eos_t {
+		eos_transaction = 0xA0;
+		eos_get_pubkey = 0xB0;
 	}
 	required uint32 value = 1;
 }
