@@ -27,7 +27,7 @@ message transaction_req_parameter_t {
 }
 
 message transaction_res_parameter_t {
-	required bytes signed_tx = 1 [(nanopb).max_size = 8000];
+	required bytes signature = 1 [(nanopb).max_size = 8000];
 }
 
 // #
