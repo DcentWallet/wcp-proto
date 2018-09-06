@@ -37,6 +37,7 @@ message command_t {
 		get_info = 0xA0;
 		set_label = 0xA2;
 		init_wallet = 0xD0;	// TEST MODE command
+		reboot_to_bl = 0xE0;
 	}
 	enum coin_t {
 		sync_account_info = 0xB0;
