@@ -19,7 +19,7 @@ option java_outer_classname = "Device";
 /* ############################################################ */
 
 message get_info_res_parameter_t {
-	required string devid = 1 [(nanopb).max_size = 32];
+	required string devid = 1 [(nanopb).max_size = 65];
 	required string fw_ver = 2 [(nanopb).max_size = 14];
 	required string ksm_ver = 3 [(nanopb).max_size = 14];
 	required wallet_state_t state = 4;
