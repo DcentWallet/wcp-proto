@@ -41,6 +41,7 @@ message get_account_info_res_parameter_t {
 	required string coin_name = 3 [(nanopb).max_size = 16];
 	required string label = 4 [(nanopb).max_size = 15];
 	required string address_path = 6 [(nanopb).max_size = 25];
+	optional string coin_group = 7 [(nanopb).max_size = 16];
 }
 
 // #
