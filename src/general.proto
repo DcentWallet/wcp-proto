@@ -27,6 +27,8 @@ enum cointype_t {
 	monacoin_testnet = 0x1101;
 	ethereum = 0x2000;
 	erc20 = 0x2020;
+	rsk = 0x2100;
+	rrc20 = 0x2120;
 	ripple = 0x3000;
 	eos = 0x4000;
 	invalid = 0xFFFF;
