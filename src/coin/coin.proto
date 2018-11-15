@@ -28,7 +28,7 @@ message sync_account_info_req_parameter_t {
 	required string coin_group = 4 [(nanopb).max_size = 16];
 	required string coin_name = 5 [(nanopb).max_size = 16];
 	required string label = 6 [(nanopb).max_size = 15];
-	required string balance = 7 [(nanopb).max_size = 18];
+	required string balance = 7 [(nanopb).max_size = 15];
 	required string address_path = 8 [(nanopb).max_size = 25];
 }
 
