@@ -1,0 +1,36 @@
+* This Package is downloaded from 
+  - https://jpa.kapsi.fi/nanopb/download/
+
+* Github is located in
+  - https://github.com/nanopb/nanopb
+
+* for more information, please visit
+  - https://jpa.kapsi.fi/nanopb/docs/index.html
+
+* in case of error like below, must sync the version of protoc and python protobuf library
+  ****************************************************************************
+  *** Got TypeError when importing the protocol definitions for generator. ***
+  *** This usually means that the protoc in your path doesn't match the    ***
+  *** Python protobuf library version.                                     ***
+  ***                                                                      ***
+  *** Please check the output of the following commands:                   ***
+  *** which protoc                                                         ***
+  *** protoc --version                                                     ***
+  *** python -c 'import google.protobuf; print(google.protobuf.__file__)'  ***
+  ****************************************************************************
+
+  # Update protoc
+  1. download lastes release from https://github.com/google/protobuf/releases
+    - "protoc-x.y.z-linux-x86_64.zip"
+  2. unzip .zip file
+  3. copy to /usr/local/
+    - /usr/local/bin & /usr/local/include
+  4. reboot ubuntu
+
+  # update python protobuf library
+  > pip install --upgrade protobuf
+
+  # Check version
+  > protoc --version
+  > pip list | grep protobuf
+

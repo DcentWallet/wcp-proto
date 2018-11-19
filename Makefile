@@ -44,7 +44,7 @@ eos: clean _proto_eos _common _export
 ## //////////////////////////////////////////////////////////// ##
 ## ############################################################ ##
 
-_PATH_NANOPB = $(MOD_DIR)/../../tools/nanopb/nanopb-0.3.9-linux-x86
+_PATH_NANOPB = $(MOD_DIR)/tools/nanopb/nanopb-0.3.9-linux-x86
 
 _PROTO_PATH=$(MOD_DIR)/src
 _NANOPB_BIN_PATH=$(_PATH_NANOPB)/generator
